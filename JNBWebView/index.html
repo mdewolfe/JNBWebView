@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Test Web Page</title>
+<script type="text/javascript">
+function getNativeImage(form) {
+	console.log('getting image from native container');
+	window.webkit.messageHandlers.getImage.postMessage({body: ""});
+	
+	return false;
+}
+
+function addImage(imgSource) {
+	console.log(imgSource);
+	var source = document.createElement("p");
+	source.textContent = imgSource;
+	document.body.appendChild(source);
+	
+	var img = document.createElement("img");
+	img.src = 'data:image/png;base64,' + imgSource;
+	document.body.appendChild(img);
+
+	return imgSource;
+}
+</script>
+</head>
+
+<body>
+	<h3>hello, world!</h3>
+	<br />
+	<br />
+	<form name="Image Test" onSubmit="return getNativeImage(this)">
+		<input type="submit" value="Get Image" />
+	</form>
+<!-- 	<a href="javascript:void(0)" onclick="getNativeImage()">Add Image</a> -->
+</body>
+
+</html> 
